@@ -1,2 +1,20 @@
-yes
-hello nihao
+server:
+  port: 10088
+spring:
+  application:
+    name: orderservice
+  gateway:
+    routes:
+      - id: example_route
+        uri: http://localhost:10088/hello/
+        predicates:
+          - Path=/h/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
